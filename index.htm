@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+              <script>
+                  $(document).ready(function(){
+                        $.post("post.php", {username: "mft", password: "012345", name: "Sina"}, function(result){
+                                 let res = JSON.parse(result);
+                                 $(res.karname).each(function(index,item){
+                                    console.log(res.name + " get " + item.score + " in " + item.course);
+                                 });
+                        });
+
+                        $.get("get.php",{username: "mft", password: "012345"},function(result){
+                            let res = JSON.parse(result);
+                            $(res).each(function(index,item){
+                                console.log("name: " + item.name,"age: " + item.age);
+                            });
+                        });
+
+                            $.ajax({
+                                method: "POST",
+                                url: "post.php",
+                                data: { username: "mft", password: "012345", name : "sara" }
+                                })
+                                .done(function( msg ) {
+                                 let res = JSON.parse(msg);
+                                 $(res.karname).each(function(index,item){
+                                    console.log(res.name + " get " + item.score + " in " + item.course);
+                                 
+                                 });
+                                });
+                
+
+
+                
+                  });
+              </script>
+</body>
+</html>
